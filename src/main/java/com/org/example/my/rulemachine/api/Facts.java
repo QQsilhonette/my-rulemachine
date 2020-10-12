@@ -33,6 +33,15 @@ public class Facts implements Iterable<Fact<?>> {
         facts.add(fact);
     }
 
+    public <T> T get(String factName) {
+        Objects.requireNonNull(factName, "fact name must not be null");
+        Fact<?> fact = getFact(factName);
+        if (null != fact) {
+            return (T) fact.getValue();
+        }
+        return null;
+    }
+
     public Fact<?> getFact(String factName) {
         Objects.requireNonNull(factName, "fact name must not be null");
         return facts.stream()
