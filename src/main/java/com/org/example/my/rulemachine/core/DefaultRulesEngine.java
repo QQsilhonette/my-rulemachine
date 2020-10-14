@@ -48,6 +48,11 @@ public class DefaultRulesEngine extends AbstractRulesEngine {
                 evaluationResult = rule.evaluate(facts);
             } catch (RuntimeException exception) {
                 log.error("Rule '" + name + "' evaluated with error", exception);
+                // give the option to either skip next rules on evaluation error or continue by considering the evaluation error as false
+                if (parameters.isSkipOnFirstNonTriggeredRule()) {
+                    log.debug("Next rules will be skipped since parameter skipOnFirstNonTriggeredRule is set");
+                    break;
+                }
             }
 
             if (evaluationResult) {
@@ -55,11 +60,23 @@ public class DefaultRulesEngine extends AbstractRulesEngine {
                 try {
                     rule.execute(facts);
                     log.debug("Rule '{}' performed successfully", name);
+                    if (parameters.isSkipOnFirstAppliedRule()) {
+                        log.debug("Next rules will be skipped since parameter skipOnFirstAppliedRule is set");
+                        break;
+                    }
                 } catch (Exception exception) {
+                    if (parameters.isSkipOnFirstFailedRule()) {
+                        log.debug("Next rules will be skipped since parameter skipOnFirstFailedRule is set");
+                        break;
+                    }
                     log.error("Rule '" + name + "' performed with error", exception);
                 }
             } else {
                 log.debug("Rule '{}' has been evaluated to false, it has not been executed", name);
+                if (parameters.isSkipOnFirstNonTriggeredRule()) {
+                    log.debug("Next rules will be skipped since parameter skipOnFirstNonTriggeredRule is set");
+                    break;
+                }
             }
         }
     }

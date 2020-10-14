@@ -13,17 +13,17 @@ public class RulesEngineParameters {
     public static final int DEFAULT_RULE_PRIORITY_THRESHOLD = Integer.MAX_VALUE;
 
     /**
-     * 当一个规则被应用可以跳过
+     * 当一个规则被触发即跳过执行剩下的规则
      */
     private boolean skipOnFirstAppliedRule;
 
     /**
-     * 当一个规则未触发可以跳过
+     * 当一个规则未触发即跳过执行剩下的规则
      */
     private boolean skipOnFirstNonTriggeredRule;
 
     /**
-     * 当一个规则失败可以跳过
+     * 当一个规则失败即跳过执行剩下的规则
      */
     private boolean skipOnFirstFailedRule;
 
