@@ -1,9 +1,6 @@
 package com.org.example.my.rulemachine.api;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author ：luoqi/02216
@@ -67,6 +64,13 @@ public class Facts implements Iterable<Fact<?>> {
         facts.remove(fact);
     }
 
+    public Map<String, Object> asMap() {
+        Map<String, Object> map = new HashMap<>();
+        for (Fact<?> fact : facts) {
+            map.put(fact.getName(), fact.getValue());
+        }
+        return map;
+    }
 
     @Override
     public Iterator<Fact<?>> iterator() {

@@ -51,12 +51,22 @@ public class RulesEngineParameters {
         this.priorityThreshold = priorityThreshold;
     }
 
+    public RulesEngineParameters priorityThreshold(final int priorityThreshold) {
+        setPriorityThreshold(priorityThreshold);
+        return this;
+    }
+
     public boolean isSkipOnFirstAppliedRule() {
         return skipOnFirstAppliedRule;
     }
 
     public void setSkipOnFirstAppliedRule(boolean skipOnFirstAppliedRule) {
         this.skipOnFirstAppliedRule = skipOnFirstAppliedRule;
+    }
+
+    public RulesEngineParameters skipOnFirstAppliedRule(final boolean skipOnFirstAppliedRule) {
+        setSkipOnFirstAppliedRule(skipOnFirstAppliedRule);
+        return this;
     }
 
     public boolean isSkipOnFirstNonTriggeredRule() {
@@ -67,12 +77,22 @@ public class RulesEngineParameters {
         this.skipOnFirstNonTriggeredRule = skipOnFirstNonTriggeredRule;
     }
 
+    public RulesEngineParameters skipOnFirstNonTriggeredRule(final boolean skipOnFirstNonTriggeredRule) {
+        setSkipOnFirstNonTriggeredRule(skipOnFirstNonTriggeredRule);
+        return this;
+    }
+
     public boolean isSkipOnFirstFailedRule() {
         return skipOnFirstFailedRule;
     }
 
     public void setSkipOnFirstFailedRule(boolean skipOnFirstFailedRule) {
         this.skipOnFirstFailedRule = skipOnFirstFailedRule;
+    }
+
+    public RulesEngineParameters skipOnFirstFailedRule(final boolean skipOnFirstFailedRule) {
+        setSkipOnFirstFailedRule(skipOnFirstFailedRule);
+        return this;
     }
 
     @Override

@@ -1,9 +1,6 @@
 package com.org.example.my.rulemachine.test;
 
-import com.org.example.my.rulemachine.api.Facts;
-import com.org.example.my.rulemachine.api.Rule;
-import com.org.example.my.rulemachine.api.Rules;
-import com.org.example.my.rulemachine.api.RulesEngine;
+import com.org.example.my.rulemachine.api.*;
 import com.org.example.my.rulemachine.core.DefaultRulesEngine;
 import com.org.example.my.rulemachine.core.InferenceRulesEngine;
 import com.org.example.my.rulemachine.core.RuleBuilder;
@@ -45,6 +42,27 @@ public class RuleMachineTest {
 
         RulesEngine rulesEngine = new InferenceRulesEngine();
         rulesEngine.fire(rules, facts);
+    }
+
+    @Test
+    public void testAnnotation() {
+        // create rules engine
+        RulesEngineParameters parameters = new RulesEngineParameters().skipOnFirstAppliedRule(true);
+        RulesEngine fizzBuzzEngine = new DefaultRulesEngine(parameters);
+
+        // create rules
+        Rules rules = new Rules();
+        rules.register(new FizzRule());
+        rules.register(new BuzzRule());
+        rules.register(new NonFizzBuzzRule());
+
+        // fire rules
+        Facts facts = new Facts();
+        for (int i = 1; i <= 100; i++) {
+            facts.put("number", i);
+            fizzBuzzEngine.fire(rules, facts);
+            System.out.println();
+        }
     }
 
 }

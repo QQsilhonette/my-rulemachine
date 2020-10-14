@@ -1,5 +1,7 @@
 package com.org.example.my.rulemachine.api;
 
+import com.org.example.my.rulemachine.core.RuleProxy;
+
 import java.util.*;
 
 public class Rules implements Iterable<Rule> {
@@ -22,9 +24,7 @@ public class Rules implements Iterable<Rule> {
         Objects.requireNonNull(rules);
         for (Object rule : rules) {
             Objects.requireNonNull(rule);
-            if (rule instanceof Rule) {
-                this.rules.add((Rule) rule);
-            }
+            this.rules.add(RuleProxy.asRule(rule));
         }
     }
 
